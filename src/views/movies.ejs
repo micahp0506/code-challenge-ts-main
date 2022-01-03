@@ -1,0 +1,47 @@
+<html>
+    <body>
+        <div>
+            <form action="/movies" method="POST">
+              <input type="text" name="movietype" placeholder="New Movie Type" required>
+              <input type="text" name="movieprice" placeholder="New Movie Price" required>
+              <input type="text" name="moviepoints" placeholder="New Movie Points" required>
+              <input type="text" name="moviemultiple" placeholder="New Movie Day Multiple" required>
+              <input class="movietypepost-button" type="submit" value="Add New Movie Type">
+            </form>
+        </div>
+        <div>
+              <form action="/moviesDelete" method="post">
+                <select class="movietype" name="movietype">
+                    <% movieTypes.forEach(function(type) { %>     
+                        <option name = "type.name" value="<%= type.name %>"><%= type.name %></option>
+                        <% })%>
+                  </select>
+                  <input class="movietypedelete-button" type="submit" value="Delete Movie Type">
+              </form>
+        </div>
+        <div>
+            <form action="/moviesUpdate" method="post">
+              <select class="movietype" name="movietype">
+                  <% movieTypes.forEach(function(type) { %>     
+                      <option name = "type.name" value="<%= type.name %>"><%=`${type.name} - ${type.price} - ${type.points} - ${type.dayMultiple}`%></option>
+                      <% })%>
+                </select>
+                <input type="text" name="moviename" placeholder="Update Movie Type Name">
+                <input type="text" name="movieprice" placeholder="Update Movie Type Price">
+                <input type="text" name="moviepoints" placeholder="Update Movie Type Points">
+                <input type="text" name="moviemultiple" placeholder="Update Movie Day Multiple">
+                <input class="movietypeupdate-button" type="submit" value="Update Movie Type">
+            </form>
+        </div>
+      <div>
+        <form action="/movieStatement" method="get">
+            <input class="moviestatement-button" type="submit" value="Get Movie Statement">
+        </form>
+     </div>
+     <div>
+        <% if (movieStatement) { 
+            %> <%- movieStatement %> <%
+        } %>
+     </div>
+    </body> 
+</html>
